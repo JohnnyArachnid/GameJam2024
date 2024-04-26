@@ -40,4 +40,8 @@ func _physics_process(delta):
 
 func kill():
 	emit_signal("die")
+	
+func _input(event : InputEvent):
+	if (event.is_action_pressed("move_down") && is_on_floor()):
+		position.y += 1
 
