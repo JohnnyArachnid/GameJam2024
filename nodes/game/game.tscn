@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v4xpc5ba5wck"]
+[gd_scene load_steps=12 format=3 uid="uid://v4xpc5ba5wck"]
 
 [ext_resource type="Script" path="res://nodes/game/game.gd" id="1_fiell"]
 [ext_resource type="PackedScene" uid="uid://cn4xvx1eaogcf" path="res://nodes/game/lvl/lvl.tscn" id="2_72e12"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://db6g0h0a4bxo3" path="res://nodes/elements/bulding_elements/moving_platform.tscn" id="8_jop3e"]
 [ext_resource type="PackedScene" uid="uid://bvv5isyge0rnd" path="res://nodes/elements/bulding_elements/moving_platform_lever.tscn" id="9_mx861"]
 [ext_resource type="PackedScene" uid="uid://dpjfdk0evcadr" path="res://nodes/elements/bulding_elements/one_way_platform.tscn" id="10_7tncs"]
+[ext_resource type="PackedScene" uid="uid://dxy2mm6bevgso" path="res://nodes/elements/water/Water_Body.tscn" id="11_k4hoq"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fiell")
@@ -17,9 +18,14 @@ script = ExtResource("1_fiell")
 [node name="Lvl" parent="." instance=ExtResource("2_72e12")]
 position = Vector2(17, 117)
 
+[node name="Water_Body" parent="." instance=ExtResource("11_k4hoq")]
+position = Vector2(832, 280)
+
 [node name="player" parent="." instance=ExtResource("3_syob8")]
 light_mask = 2
 position = Vector2(249, 512)
+collision_layer = 3
+collision_mask = 3
 
 [node name="BlackHole" parent="." instance=ExtResource("4_gwnpj")]
 position = Vector2(96, 72)

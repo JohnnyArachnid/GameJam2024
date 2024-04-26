@@ -4,8 +4,9 @@ class_name Player
 
 signal die
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var SPEED = 300.0
+@export var JUMP_VELOCITY = -400.0
+@export var speed_in_water : float = 150.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -26,7 +27,10 @@ func _physics_process(delta):
 	if not is_dead :
 		var direction = Input.get_axis("move_left", "move_right")
 		if direction and character_state_machine.check_if_can_move():
-			velocity.x = direction * SPEED
+			if (not is_in_water):
+				velocity.x = direction * SPEED
+			else:
+				velocity.x = direction * speed_in_water
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
