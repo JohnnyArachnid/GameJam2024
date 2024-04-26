@@ -1,5 +1,8 @@
 extends Node2D
 
+class_name Interactive
+
+var is_active : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
