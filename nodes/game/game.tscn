@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://v4xpc5ba5wck"]
+[gd_scene load_steps=14 format=3 uid="uid://v4xpc5ba5wck"]
 
 [ext_resource type="Script" path="res://nodes/game/game.gd" id="1_fiell"]
 [ext_resource type="PackedScene" uid="uid://cn4xvx1eaogcf" path="res://nodes/game/lvl/lvl.tscn" id="2_72e12"]
@@ -11,9 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://bvv5isyge0rnd" path="res://nodes/elements/bulding_elements/moving_platform_lever.tscn" id="9_mx861"]
 [ext_resource type="PackedScene" uid="uid://dpjfdk0evcadr" path="res://nodes/elements/bulding_elements/one_way_platform.tscn" id="10_7tncs"]
 [ext_resource type="PackedScene" uid="uid://dxy2mm6bevgso" path="res://nodes/elements/water/Water_Body.tscn" id="11_k4hoq"]
+[ext_resource type="PackedScene" uid="uid://cpcoh4boli6u6" path="res://nodes/UI/Transitioner/transButton.tscn" id="12_u58jv"]
+[ext_resource type="PackedScene" uid="uid://crsfn8cuddk1j" path="res://nodes/UI/Transitioner/transitioner.tscn" id="13_5of7b"]
 
 [node name="Game" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_fiell")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Transitioner" parent="CanvasLayer" instance=ExtResource("13_5of7b")]
+
+[node name="CheckButton" parent="CanvasLayer" node_paths=PackedStringArray("transitioner") instance=ExtResource("12_u58jv")]
+transitioner = NodePath("../Transitioner")
 
 [node name="Lvl" parent="." instance=ExtResource("2_72e12")]
 position = Vector2(17, 117)
