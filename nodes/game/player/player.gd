@@ -35,7 +35,7 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 		if direction != 0:
-			to_be_flipped.set_scale(Vector2(scale.x * direction, scale.y))
+			to_be_flipped.set_scale(Vector2(abs(scale.x) * direction, scale.y))
 
 	move_and_slide()
 	
