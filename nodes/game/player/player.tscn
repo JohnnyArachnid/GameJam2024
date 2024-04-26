@@ -1,32 +1,16 @@
-[gd_scene load_steps=42 format=3 uid="uid://5fw75hfjyana"]
+[gd_scene load_steps=41 format=3 uid="uid://5fw75hfjyana"]
 
 [ext_resource type="Script" path="res://nodes/game/player/player.gd" id="1_ia0x1"]
-[ext_resource type="Script" path="res://nodes/game/player/Damagable.gd" id="2_wui6q"]
 [ext_resource type="Script" path="res://nodes/game/player/CharacterStateMachine.gd" id="3_sbg0g"]
 [ext_resource type="Script" path="res://nodes/game/player/Walk.gd" id="4_bikfr"]
 [ext_resource type="Script" path="res://nodes/game/player/Air.gd" id="5_jrp4a"]
+[ext_resource type="Script" path="res://nodes/game/player/Death.gd" id="6_hqagg"]
 [ext_resource type="Script" path="res://nodes/game/player/Landing.gd" id="6_knqc8"]
-[ext_resource type="Script" path="res://nodes/game/player/Hit.gd" id="6_ub7o8"]
 [ext_resource type="Script" path="res://nodes/game/player/Attack.gd" id="7_o8gfm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxmln"]
 radius = 8.0
 height = 26.0
-
-[sub_resource type="Animation" id="Animation_8hd52"]
-resource_name = "Idle"
-
-[sub_resource type="Animation" id="Animation_2fnox"]
-resource_name = "Walk"
-
-[sub_resource type="Animation" id="Animation_44rng"]
-resource_name = "Hit"
-
-[sub_resource type="Animation" id="Animation_c8oby"]
-resource_name = "JumpStart"
-
-[sub_resource type="Animation" id="Animation_7cip0"]
-resource_name = "JumpEnd"
 
 [sub_resource type="Animation" id="Animation_q5irx"]
 resource_name = "Attack"
@@ -34,11 +18,26 @@ resource_name = "Attack"
 [sub_resource type="Animation" id="Animation_uoaq8"]
 resource_name = "Death"
 
+[sub_resource type="Animation" id="Animation_xqbux"]
+resource_name = "Falling"
+
+[sub_resource type="Animation" id="Animation_44rng"]
+resource_name = "Hit"
+
+[sub_resource type="Animation" id="Animation_8hd52"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_7cip0"]
+resource_name = "JumpEnd"
+
 [sub_resource type="Animation" id="Animation_7pktr"]
 resource_name = "JumpInAir"
 
-[sub_resource type="Animation" id="Animation_xqbux"]
-resource_name = "Falling"
+[sub_resource type="Animation" id="Animation_c8oby"]
+resource_name = "JumpStart"
+
+[sub_resource type="Animation" id="Animation_2fnox"]
+resource_name = "Walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d25b8"]
 _data = {
@@ -130,7 +129,9 @@ states/Walk/position = Vector2(624, 154)
 transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_440c5"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_s6vc4"), "Hit", "Walk", SubResource("AnimationNodeStateMachineTransition_jrce2"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_627n1"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx")]
 graph_offset = Vector2(-63, -21)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_ia0x1")
 character_state_machine = NodePath("CharacterStateMachine")
 
@@ -165,9 +166,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_wuv5l")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Damagable" type="Node" parent="."]
-script = ExtResource("2_wui6q")
-
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
 script = ExtResource("3_sbg0g")
 character = NodePath("..")
@@ -187,9 +185,8 @@ landing_state = NodePath("../Landing")
 script = ExtResource("6_knqc8")
 ground_state = NodePath("../Walk")
 
-[node name="Hit" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("6_ub7o8")
-can_move = false
+[node name="Death" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("6_hqagg")
 
 [node name="Attack" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("7_o8gfm")
