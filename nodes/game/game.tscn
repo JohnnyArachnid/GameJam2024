@@ -14,7 +14,7 @@ position = Vector2(17, 117)
 
 [node name="player" parent="." instance=ExtResource("3_syob8")]
 light_mask = 2
-position = Vector2(249, 512)
+position = Vector2(348, 521)
 
 [node name="BlackHole" parent="." instance=ExtResource("4_gwnpj")]
 position = Vector2(840, 475)
