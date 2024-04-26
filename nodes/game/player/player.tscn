@@ -1,12 +1,16 @@
-[gd_scene load_steps=41 format=3 uid="uid://5fw75hfjyana"]
+[gd_scene load_steps=43 format=3 uid="uid://5fw75hfjyana"]
 
 [ext_resource type="Script" path="res://nodes/game/player/player.gd" id="1_ia0x1"]
+[ext_resource type="Script" path="res://nodes/game/player/Weapon.gd" id="2_gqndi"]
 [ext_resource type="Script" path="res://nodes/game/player/CharacterStateMachine.gd" id="3_sbg0g"]
 [ext_resource type="Script" path="res://nodes/game/player/Walk.gd" id="4_bikfr"]
 [ext_resource type="Script" path="res://nodes/game/player/Air.gd" id="5_jrp4a"]
 [ext_resource type="Script" path="res://nodes/game/player/Death.gd" id="6_hqagg"]
 [ext_resource type="Script" path="res://nodes/game/player/Landing.gd" id="6_knqc8"]
 [ext_resource type="Script" path="res://nodes/game/player/Attack.gd" id="7_o8gfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckrwl"]
+size = Vector2(54, 45.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxmln"]
 radius = 8.0
@@ -29,6 +33,81 @@ resource_name = "Idle"
 
 [sub_resource type="Animation" id="Animation_7cip0"]
 resource_name = "JumpEnd"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterStateMachine/Landing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"landed"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.0980731, 1),
+"update": 0,
+"values": [Color(0.835294, 0.619608, 0, 0.160784), Color(0.698039, 0.905882, 0.65098, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q5irx"]
+resource_name = "Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flippendo/Weapon:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterStateMachine/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_uoaq8"]
+resource_name = "Death"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterStateMachine/Death")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dead"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_7pktr"]
 resource_name = "JumpInAir"
@@ -82,11 +161,13 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uw5oj"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tu2xh"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtm3g"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jj8k6"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6vc4"]
@@ -120,20 +201,21 @@ states/Hit/position = Vector2(764, 149)
 states/Jump/node = SubResource("AnimationNodeAnimation_7ur8d")
 states/Jump/position = Vector2(456, 62)
 states/Landing/node = SubResource("AnimationNodeAnimation_i8p6h")
-states/Landing/position = Vector2(764, 62)
+states/Landing/position = Vector2(749, 72)
 states/NextJump/node = SubResource("AnimationNodeAnimation_ryvpb")
 states/NextJump/position = Vector2(603, 7)
 states/Start/position = Vector2(230, 138)
 states/Walk/node = SubResource("AnimationNodeAnimation_synte")
 states/Walk/position = Vector2(624, 154)
 transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_440c5"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_s6vc4"), "Hit", "Walk", SubResource("AnimationNodeStateMachineTransition_jrce2"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_627n1"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx")]
-graph_offset = Vector2(-63, -21)
+graph_offset = Vector2(-58, 63)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine")]
-collision_layer = 3
-collision_mask = 3
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped")]
+collision_layer = 2
+
 script = ExtResource("1_ia0x1")
 character_state_machine = NodePath("CharacterStateMachine")
+to_be_flipped = NodePath("Flippendo")
 
 [node name="DEBUG_STATE_LABEL" type="Label" parent="."]
 offset_left = -18.0
@@ -144,6 +226,16 @@ text = "chuj"
 
 [node name="Flippendo" type="Node2D" parent="."]
 
+[node name="Weapon" type="Area2D" parent="Flippendo"]
+collision_layer = 0
+collision_mask = 12
+monitoring = false
+script = ExtResource("2_gqndi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flippendo/Weapon"]
+position = Vector2(19, -9.25)
+shape = SubResource("RectangleShape2D_ckrwl")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mxmln")
 
@@ -152,7 +244,7 @@ offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0
 offset_bottom = 13.0
-color = Color(1, 0, 1, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -184,10 +276,15 @@ landing_state = NodePath("../Landing")
 [node name="Landing" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("6_knqc8")
 ground_state = NodePath("../Walk")
+can_move = false
 
 [node name="Death" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("6_hqagg")
-
-[node name="Attack" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("7_o8gfm")
 can_move = false
+
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
+script = ExtResource("7_o8gfm")
+ground_state = NodePath("../Walk")
+can_move = false
+
+[connection signal="body_entered" from="Flippendo/Weapon" to="Flippendo/Weapon" method="_on_body_entered"]

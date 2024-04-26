@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn4xvx1eaogcf"]
+[gd_scene load_steps=4 format=3 uid="uid://cn4xvx1eaogcf"]
+
+[ext_resource type="PackedScene" uid="uid://b0u0c27i7rr37" path="res://nodes/game/lvl_elems/śmierć.tscn" id="1_07mt8"]
+[ext_resource type="PackedScene" uid="uid://cad0p634577l3" path="res://nodes/game/lvl_elems/do_trafienia.tscn" id="2_bbxjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8n0r"]
 size = Vector2(1062, 103)
@@ -16,3 +19,8 @@ offset_left = 1.0
 offset_top = 420.0
 offset_right = 1062.0
 offset_bottom = 524.0
+
+[node name="Śmierć" parent="." instance=ExtResource("1_07mt8")]
+collision_mask = 2
+
+[node name="DoTrafienia" parent="." instance=ExtResource("2_bbxjc")]

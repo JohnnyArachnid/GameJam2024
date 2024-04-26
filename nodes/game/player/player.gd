@@ -2,35 +2,36 @@ extends CharacterBody2D
 
 class_name Player
 
+signal die
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var character_state_machine : CSM
+@export var to_be_flipped : Node2D
 
 # DEBUG WYJEB KIEDYŚ
 @onready var debug_state_label : Label = $DEBUG_STATE_LABEL
 
-var player_dead : bool = false
+var is_dead : bool = false
+var is_in_water : bool = false
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("move_left", "move_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if not is_dead :
+		var direction = Input.get_axis("move_left", "move_right")
+		if direction and character_state_machine.check_if_can_move():
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+		if direction != 0:
+			to_be_flipped.set_scale(Vector2(scale.x * direction, scale.y))
 
 	move_and_slide()
 	
@@ -38,5 +39,5 @@ func _physics_process(delta):
 	debug_state_label.text = character_state_machine.current_state.name
 
 func kill():
-	character_state_machine
+	emit_signal("die")
 

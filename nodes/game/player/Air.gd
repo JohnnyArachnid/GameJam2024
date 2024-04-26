@@ -16,7 +16,6 @@ func state_process(delta):
 		next_state = landing_state
 		
 func state_input(event : InputEvent):
-	print(has_next_jump,jump_count )
 	if event.is_action_pressed("jump") && has_next_jump :
 		next_jump()
 
