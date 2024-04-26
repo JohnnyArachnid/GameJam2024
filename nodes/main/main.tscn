@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://vsit3mkpvysh"]
+[gd_scene load_steps=4 format=3 uid="uid://vsit3mkpvysh"]
 
 [ext_resource type="Script" path="res://nodes/main/main.gd" id="1_w0ujb"]
+[ext_resource type="PackedScene" uid="uid://uebrc23n62ya" path="res://nodes/menu/MainMenu.tscn" id="2_ph0nn"]
+[ext_resource type="PackedScene" uid="uid://v4xpc5ba5wck" path="res://nodes/game/game.tscn" id="3_qe3hx"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_w0ujb")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_ph0nn")]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 575.0
+offset_top = 325.0
+offset_right = 575.0
+offset_bottom = 325.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Game" parent="." instance=ExtResource("3_qe3hx")]
