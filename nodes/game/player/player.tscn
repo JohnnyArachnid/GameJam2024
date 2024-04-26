@@ -1,12 +1,11 @@
-[gd_scene load_steps=42 format=3 uid="uid://5fw75hfjyana"]
+[gd_scene load_steps=41 format=3 uid="uid://5fw75hfjyana"]
 
 [ext_resource type="Script" path="res://nodes/game/player/player.gd" id="1_ia0x1"]
-[ext_resource type="Script" path="res://nodes/game/player/Damagable.gd" id="2_wui6q"]
 [ext_resource type="Script" path="res://nodes/game/player/CharacterStateMachine.gd" id="3_sbg0g"]
 [ext_resource type="Script" path="res://nodes/game/player/Walk.gd" id="4_bikfr"]
 [ext_resource type="Script" path="res://nodes/game/player/Air.gd" id="5_jrp4a"]
+[ext_resource type="Script" path="res://nodes/game/player/Death.gd" id="6_hqagg"]
 [ext_resource type="Script" path="res://nodes/game/player/Landing.gd" id="6_knqc8"]
-[ext_resource type="Script" path="res://nodes/game/player/Hit.gd" id="6_ub7o8"]
 [ext_resource type="Script" path="res://nodes/game/player/Attack.gd" id="7_o8gfm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxmln"]
@@ -165,9 +164,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_wuv5l")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Damagable" type="Node" parent="."]
-script = ExtResource("2_wui6q")
-
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
 script = ExtResource("3_sbg0g")
 character = NodePath("..")
@@ -187,9 +183,8 @@ landing_state = NodePath("../Landing")
 script = ExtResource("6_knqc8")
 ground_state = NodePath("../Walk")
 
-[node name="Hit" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("6_ub7o8")
-can_move = false
+[node name="Death" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("6_hqagg")
 
 [node name="Attack" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("7_o8gfm")

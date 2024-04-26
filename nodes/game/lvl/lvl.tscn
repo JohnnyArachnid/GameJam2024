@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn4xvx1eaogcf"]
-
-[ext_resource type="PackedScene" uid="uid://5fw75hfjyana" path="res://nodes/game/player/player.tscn" id="1_u3ubt"]
+[gd_scene load_steps=2 format=3 uid="uid://cn4xvx1eaogcf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8n0r"]
 size = Vector2(1062, 103)
@@ -18,7 +16,3 @@ offset_left = 1.0
 offset_top = 420.0
 offset_right = 1062.0
 offset_bottom = 524.0
-
-[node name="player" parent="." instance=ExtResource("1_u3ubt")]
-light_mask = 2
-position = Vector2(234, 403)

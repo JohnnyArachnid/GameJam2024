@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://v4xpc5ba5wck"]
+[gd_scene load_steps=4 format=3 uid="uid://v4xpc5ba5wck"]
 
 [ext_resource type="Script" path="res://nodes/game/game.gd" id="1_fiell"]
+[ext_resource type="PackedScene" uid="uid://cn4xvx1eaogcf" path="res://nodes/game/lvl/lvl.tscn" id="2_72e12"]
+[ext_resource type="PackedScene" uid="uid://5fw75hfjyana" path="res://nodes/game/player/player.tscn" id="3_syob8"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fiell")
+
+[node name="Lvl" parent="." instance=ExtResource("2_72e12")]
+position = Vector2(17, 117)
+
+[node name="player" parent="." instance=ExtResource("3_syob8")]
+light_mask = 2
+position = Vector2(249, 512)
