@@ -15,10 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://cpcoh4boli6u6" path="res://nodes/UI/Transitioner/transButton.tscn" id="12_u58jv"]
 [ext_resource type="PackedScene" uid="uid://crsfn8cuddk1j" path="res://nodes/UI/Transitioner/transitioner.tscn" id="13_5of7b"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "end_screen", "player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "transitioner", "end_screen", "player")]
 process_mode = 1
 script = ExtResource("1_fiell")
 transition_button = NodePath("TransitionerCanvasLayer/TransButton")
+transitioner = NodePath("TransitionerCanvasLayer/Transitioner")
 end_screen = NodePath("EndScreenCanvasLayer")
 player = NodePath("player")
 
@@ -54,7 +55,9 @@ position = Vector2(832, 280)
 
 [node name="player" parent="." instance=ExtResource("3_syob8")]
 light_mask = 2
-position = Vector2(348, 521)
+position = Vector2(249, 512)
+collision_layer = 3
+collision_mask = 3
 
 [node name="BlackHole" parent="." instance=ExtResource("4_gwnpj")]
 position = Vector2(96, 72)

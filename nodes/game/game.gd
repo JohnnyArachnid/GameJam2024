@@ -7,9 +7,10 @@ signal lvl_finished
 signal toggle_game_paused(is_paused : bool)
 
 @export var transition_button : Button
+@export var transitioner : Transitioner
 @export var end_screen : CanvasLayer
 @export var player_died_end_text : String = "Game Over"
-@export var player : CharacterBody2D
+@export var player : Player
 
 var player_dead : bool = false
 
@@ -31,11 +32,11 @@ func _ready():
 	player.connect("die", player_died)
 
 func player_died():
-	player_dead = true
 	end_screen.find_child("EndText").text = player_died_end_text
 	end_screen.visible = true
 	transition_button._on_toggled(true)
 	transition_button.disabled = true
+	player_dead = true
 
 func transition_animation_finished():
 	lvl_finished.emit()
