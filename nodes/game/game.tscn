@@ -15,11 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://cpcoh4boli6u6" path="res://nodes/UI/Transitioner/transButton.tscn" id="12_u58jv"]
 [ext_resource type="PackedScene" uid="uid://crsfn8cuddk1j" path="res://nodes/UI/Transitioner/transitioner.tscn" id="13_5of7b"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "end_screen")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "end_screen", "player")]
 process_mode = 1
 script = ExtResource("1_fiell")
 transition_button = NodePath("TransitionerCanvasLayer/TransButton")
 end_screen = NodePath("EndScreenCanvasLayer")
+player = NodePath("player")
 
 [node name="TransitionerCanvasLayer" type="CanvasLayer" parent="."]
 
