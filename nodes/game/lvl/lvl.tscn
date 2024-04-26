@@ -9,6 +9,7 @@ size = Vector2(1062, 103)
 [node name="Lvl" type="Node2D"]
 
 [node name="TEMP_PODŁOGA" type="StaticBody2D" parent="."]
+scale = Vector2(5, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TEMP_PODŁOGA"]
 position = Vector2(532, 473.5)
