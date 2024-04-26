@@ -36,3 +36,7 @@ func _physics_process(delta):
 	
 	# DEBUG WYJEB KIEDYŚ
 	debug_state_label.text = character_state_machine.current_state.name
+
+func kill():
+	character_state_machine
+
