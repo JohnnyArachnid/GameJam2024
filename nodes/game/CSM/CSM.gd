@@ -13,7 +13,6 @@ func _ready():
 		if(child is State):
 			states.append(child)
 			
-			# Set the states up with what they need to function
 			child.character = character
 			child.playback = animation_tree["parameters/playback"]
 			
