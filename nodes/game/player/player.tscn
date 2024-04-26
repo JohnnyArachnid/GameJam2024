@@ -12,32 +12,32 @@
 radius = 8.0
 height = 26.0
 
-[sub_resource type="Animation" id="Animation_8hd52"]
-resource_name = "Idle"
-
-[sub_resource type="Animation" id="Animation_2fnox"]
-resource_name = "Walk"
-
-[sub_resource type="Animation" id="Animation_44rng"]
-resource_name = "Hit"
-
-[sub_resource type="Animation" id="Animation_c8oby"]
-resource_name = "JumpStart"
-
-[sub_resource type="Animation" id="Animation_7cip0"]
-resource_name = "JumpEnd"
-
 [sub_resource type="Animation" id="Animation_q5irx"]
 resource_name = "Attack"
 
 [sub_resource type="Animation" id="Animation_uoaq8"]
 resource_name = "Death"
 
+[sub_resource type="Animation" id="Animation_xqbux"]
+resource_name = "Falling"
+
+[sub_resource type="Animation" id="Animation_44rng"]
+resource_name = "Hit"
+
+[sub_resource type="Animation" id="Animation_8hd52"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_7cip0"]
+resource_name = "JumpEnd"
+
 [sub_resource type="Animation" id="Animation_7pktr"]
 resource_name = "JumpInAir"
 
-[sub_resource type="Animation" id="Animation_xqbux"]
-resource_name = "Falling"
+[sub_resource type="Animation" id="Animation_c8oby"]
+resource_name = "JumpStart"
+
+[sub_resource type="Animation" id="Animation_2fnox"]
+resource_name = "Walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d25b8"]
 _data = {
@@ -129,7 +129,9 @@ states/Walk/position = Vector2(624, 154)
 transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_440c5"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_s6vc4"), "Hit", "Walk", SubResource("AnimationNodeStateMachineTransition_jrce2"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_627n1"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx")]
 graph_offset = Vector2(-63, -21)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_ia0x1")
 character_state_machine = NodePath("CharacterStateMachine")
 
