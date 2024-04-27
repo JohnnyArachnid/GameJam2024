@@ -2,7 +2,7 @@ extends State
 
 class_name EnemyAttack
 
-@export var ground_state : State
+@export var follow_state : State
 
 func attack_finished():
-	next_state = ground_state
+	next_state = follow_state

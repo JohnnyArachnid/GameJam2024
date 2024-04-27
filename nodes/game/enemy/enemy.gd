@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 signal die
 
-const WALK_SPEED = 100.0
-const FOLLOW_SPEED = 200.0
-const ATTACK_MIN_DISTANCE = 50
-const FOLLOW_MAX_DISTANCE = 300
-const FOLLOW_OFFSET = 20
+const WALK_SPEED = 50.0
+const FOLLOW_SPEED = 100.0
+const ATTACK_MIN_DISTANCE = 20
+const FOLLOW_MAX_DISTANCE = 172
+const FOLLOW_OFFSET = 0
 
 @export var character_state_machine : CSM
 @export var floorDetect: RayCast2D
@@ -32,6 +32,9 @@ func _physics_process(delta):
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	if not character_state_machine.check_if_can_move():
+		velocity.x = 0
 	
 	move_and_slide()
 	
