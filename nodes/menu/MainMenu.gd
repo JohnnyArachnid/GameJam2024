@@ -11,11 +11,6 @@ func _ready():
 	start_button.button_down.connect(on_start_pressed)
 	exit_button.button_down.connect(on_exit_pressed)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func on_start_pressed() -> void:
 	play.emit()
 	self.queue_free()
