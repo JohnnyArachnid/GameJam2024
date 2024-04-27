@@ -4,14 +4,6 @@ extends Node2D
 
 func _on_area_2d_body_entered(body):
 	if (body.name == "player"):
-<<<<<<< Updated upstream
-		if (interactive.is_active == true):
-			interactive.is_active = false
-			interactive.get_node("Sprite2D").visible = false
-			interactive.get_node("StaticBody2D").set_collision_layer_value(1, false)
-		else:
-			pass
-=======
 		if not interactive:
 			return
 		
@@ -23,5 +15,4 @@ func _on_area_2d_body_entered(body):
 			if anim_player:
 				anim_player.play("default")
 	pass
->>>>>>> Stashed changes
 		
