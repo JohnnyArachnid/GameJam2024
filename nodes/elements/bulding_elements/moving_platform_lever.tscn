@@ -44,22 +44,42 @@ _data = {
 "move_loop": SubResource("Animation_oe82t")
 }
 
+<<<<<<< Updated upstream
 [node name="moving_platform_lever" type="Node2D"]
 scale = Vector2(5, 3)
+=======
+[node name="platform" type="AnimatableBody2D"]
+collision_layer = 15
+collision_mask = 15
+>>>>>>> Stashed changes
 script = ExtResource("1_hur73")
-metadata/_edit_group_ = true
 
+<<<<<<< Updated upstream
 [node name="platform" type="AnimatableBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="platform"]
 texture = ExtResource("1_14i0f")
+=======
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2kab5")
+>>>>>>> Stashed changes
 region_enabled = true
 region_rect = Rect2(16, 160, 80, 8)
 
+<<<<<<< Updated upstream
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+=======
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.6294e-07, 2.66667)
+>>>>>>> Stashed changes
 shape = SubResource("RectangleShape2D_io5os")
 
+<<<<<<< Updated upstream
 [node name="AnimationPlayer" type="AnimationPlayer" parent="platform"]
+=======
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+>>>>>>> Stashed changes
 libraries = {
 "": SubResource("AnimationLibrary_5xjd1")
 }
