@@ -14,5 +14,6 @@ func _on_area_2d_body_entered(body):
 			var anim_player = interactive.find_child("AnimationPlayer")
 			if anim_player:
 				anim_player.play("default")
+
 	pass
 		
