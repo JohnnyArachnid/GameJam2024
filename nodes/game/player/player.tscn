@@ -9,12 +9,11 @@
 [ext_resource type="Script" path="res://nodes/game/player/Landing.gd" id="6_knqc8"]
 [ext_resource type="Script" path="res://nodes/game/player/Attack.gd" id="7_o8gfm"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46jnb"]
+size = Vector2(32, 32)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckrwl"]
 size = Vector2(54, 45.5)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxmln"]
-radius = 8.0
-height = 26.0
 
 [sub_resource type="Animation" id="Animation_q5irx"]
 resource_name = "Attack"
@@ -48,7 +47,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_uoaq8"]
 resource_name = "Death"
-length = 2.0
+length = 5.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,7 +55,7 @@ tracks/0/path = NodePath("CharacterStateMachine/Death")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2),
+"times": PackedFloat32Array(4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -207,8 +206,14 @@ graph_offset = Vector2(-58, 63)
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped")]
 collision_layer = 2
 script = ExtResource("1_ia0x1")
+SPEED = 800.0
+JUMP_VELOCITY = -1200.0
+speed_in_water = 250.0
 character_state_machine = NodePath("CharacterStateMachine")
 to_be_flipped = NodePath("Flippendo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_46jnb")
 
 [node name="DEBUG_STATE_LABEL" type="Label" parent="."]
 offset_left = -18.0
@@ -226,17 +231,14 @@ monitoring = false
 script = ExtResource("2_gqndi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippendo/Weapon"]
-position = Vector2(19, -9.25)
+position = Vector2(43, -7)
 shape = SubResource("RectangleShape2D_ckrwl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_mxmln")
-
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -8.0
-offset_top = -12.0
-offset_right = 8.0
-offset_bottom = 13.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -265,6 +267,7 @@ attack_state = NodePath("../Attack")
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("landing_state")]
 script = ExtResource("5_jrp4a")
 landing_state = NodePath("../Landing")
+next_jump_velocity = -300.0
 
 [node name="Landing" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("6_knqc8")
