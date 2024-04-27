@@ -1,2 +1,6 @@
-extends Node2D
+
+extends Interactive
+
+func activate():
+	queue_free()
 

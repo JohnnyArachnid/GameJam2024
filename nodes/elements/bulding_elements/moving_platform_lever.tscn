@@ -44,18 +44,19 @@ _data = {
 "default": SubResource("Animation_acf1c")
 }
 
-[node name="moving_platform_lever" type="Node2D"]
+[node name="platform" type="AnimatableBody2D"]
+collision_layer = 15
+collision_mask = 15
 script = ExtResource("1_hur73")
-metadata/_edit_group_ = true
 
-[node name="platform" type="AnimatableBody2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="platform"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2kab5")
 texture = ExtResource("2_2kab5")
 region_enabled = true
 region_rect = Rect2(128, 96, 32, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7.6294e-07, 2.66667)
 shape = SubResource("RectangleShape2D_io5os")
 disabled = true

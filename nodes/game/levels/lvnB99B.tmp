@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://beykmc3nnpy71"]
+[gd_scene load_steps=30 format=3 uid="uid://beykmc3nnpy71"]
 
 [ext_resource type="Texture2D" uid="uid://c56kjs45pjhq0" path="res://graphics/togra.png" id="2_b3s42"]
 [ext_resource type="Texture2D" uid="uid://2fdlq500b0t4" path="res://graphics/tilemap_1.png" id="2_ui6p1"]
@@ -6,11 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bd7ms0mj77pq7" path="res://graphics/blender_1.png" id="4_lww4m"]
 [ext_resource type="PackedScene" uid="uid://crsfn8cuddk1j" path="res://nodes/UI/Transitioner/transitioner.tscn" id="5_dwvwq"]
 [ext_resource type="PackedScene" uid="uid://cpcoh4boli6u6" path="res://nodes/UI/Transitioner/transButton.tscn" id="6_c88do"]
-[ext_resource type="PackedScene" uid="uid://bld82n10qhycx" path="res://nodes/UI/PauseMenu/PauseMenu.tscn" id="7_u4mm8"]
+[ext_resource type="PackedScene" uid="uid://dknhxv0icp7v2" path="res://nodes/UI/PauseMenu/pause_menu.tscn" id="7_23yq3"]
 [ext_resource type="PackedScene" uid="uid://5fw75hfjyana" path="res://nodes/game/player/player.tscn" id="8_xpf1n"]
 [ext_resource type="PackedScene" uid="uid://b0u0c27i7rr37" path="res://nodes/elements/spike/spike.tscn" id="9_6fudv"]
-
-[ext_resource type="Script" path="res://nodes/game/KoniecPoziomu.gd" id="10_4uyj3"]
 [ext_resource type="PackedScene" uid="uid://dxy2mm6bevgso" path="res://nodes/elements/water/Water_Body.tscn" id="11_82g87"]
 [ext_resource type="PackedScene" uid="uid://dmitstaux7wpr" path="res://nodes/elements/blendery/blender_tlo1.tscn" id="12_qxpts"]
 [ext_resource type="PackedScene" uid="uid://dlsbiqj1byvvu" path="res://nodes/elements/blendery/blender_tlo2.tscn" id="13_j4lng"]
@@ -21,24 +19,19 @@
 [ext_resource type="PackedScene" uid="uid://bet3j0aw7xm08" path="res://nodes/elements/bulding_elements/button.tscn" id="17_c7yfd"]
 [ext_resource type="PackedScene" uid="uid://ctk6d6jftuli" path="res://nodes/game/enemy/enemy.tscn" id="18_84wrp"]
 [ext_resource type="PackedScene" uid="uid://c5en4f5aajxoc" path="res://nodes/elements/bulding_elements/switchable platform.tscn" id="19_114ui"]
-[ext_resource type="AudioStream" uid="uid://drvqdbart7qsi" path="res://data/audio/next_level_music.mp3" id="20_uplgw"]
-[ext_resource type="AudioStream" uid="uid://dpleqwwyeshqm" path="res://data/audio/in_game_music.mp3" id="21_m2f22"]
 
 [sub_resource type="GDScript" id="GDScript_r5xrp"]
 script/source = "extends GameManager
 
 @export var next_lvn : PackedScene
 @onready var timer : Timer = $Area2D/Timer
-@onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 
 func _on_area_2d_body_entered(body):
 	if (body.name == \"player\"):
 		transitioner.animation_player.play(\"fade_out\")
-		audio_player.play()
-		await audio_player.finished
-		get_tree().change_scene_to_packed(next_lvn)
+		timer.start()
 		pass
-
+		
 func _on_timer_timeout():
 	get_tree().change_scene_to_packed(next_lvn)
 	pass
@@ -479,7 +472,7 @@ vertical_alignment = 1
 [node name="PauseScreenCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="MainMenu" parent="PauseScreenCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("7_u4mm8")]
+[node name="PauseMenu" parent="PauseScreenCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("7_23yq3")]
 game_manager = NodePath("../..")
 
 [node name="player" parent="." instance=ExtResource("8_xpf1n")]
@@ -555,8 +548,8 @@ collision_mask = 3
 script = SubResource("GDScript_6acmi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(221.5, 54)
-shape = SubResource("RectangleShape2D_kgdko")
+position = Vector2(0, -0.125)
+shape = SubResource("RectangleShape2D_pyxyd")
 
 [node name="Area2D2" type="Area2D" parent="."]
 light_mask = 3
@@ -575,11 +568,8 @@ scale = Vector2(1, 1)
 interactive = NodePath("../moving_platform_lever")
 
 [node name="moving_platform_lever" parent="." instance=ExtResource("16_36gjn")]
-position = Vector2(2591, -176)
+position = Vector2(2592, -176)
 scale = Vector2(2, 2)
-collision_layer = 1
-collision_mask = 3
-
 
 [node name="enemy" parent="." instance=ExtResource("18_84wrp")]
 position = Vector2(1069, 13)
@@ -593,10 +583,9 @@ position = Vector2(1196, 13)
 [node name="SwitchablePlatform" parent="." instance=ExtResource("19_114ui")]
 position = Vector2(1424, 22)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("20_uplgw")
-volume_db = -40.0
-
+[node name="button2" parent="." node_paths=PackedStringArray("interactive") instance=ExtResource("17_c7yfd")]
+position = Vector2(1604, 15)
+interactive = NodePath("../moving_platform_lever")
 
 [connection signal="body_entered" from="KoniecPoziomu" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="KoniecPoziomu/Timer" to="." method="_on_timer_timeout"]
