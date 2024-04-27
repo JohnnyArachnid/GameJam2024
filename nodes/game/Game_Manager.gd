@@ -28,16 +28,18 @@ func _input(event : InputEvent):
 		game_paused = !game_paused
 
 func _ready():
-	self.scale = Vector2(3.0,3.0)
 	transition_button.transition_finished.connect(transition_animation_finished)
 	player.connect("die", player_died)
 
 func player_died():
 	end_screen.find_child("EndText").text = player_died_end_text
 	end_screen.visible = true
-	transition_button._on_toggled(true)
-	transition_button.disabled = true
+	transitioner.animation_player.play("fade_out")
 	player_dead = true
 
 func transition_animation_finished():
 	lvl_finished.emit()
+
+
+#func _on_area_2d_body_entered(body):
+	#
