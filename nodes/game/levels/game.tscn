@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://v4xpc5ba5wck"]
+[gd_scene load_steps=27 format=3 uid="uid://v4xpc5ba5wck"]
 
 [ext_resource type="Script" path="res://nodes/game/levels/game.gd" id="1_fiell"]
 [ext_resource type="PackedScene" uid="uid://beykmc3nnpy71" path="res://nodes/game/levels/lvn_2.tscn" id="2_anydo"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2fdlq500b0t4" path="res://graphics/tilemap_1.png" id="3_nqkrc"]
 [ext_resource type="PackedScene" uid="uid://5fw75hfjyana" path="res://nodes/game/player/player.tscn" id="3_syob8"]
 [ext_resource type="Texture2D" uid="uid://bd7ms0mj77pq7" path="res://graphics/blender_1.png" id="4_cqsvx"]
-[ext_resource type="PackedScene" uid="uid://dknhxv0icp7v2" path="res://nodes/UI/PauseMenu/pause_menu.tscn" id="4_mudnx"]
+[ext_resource type="PackedScene" uid="uid://bld82n10qhycx" path="res://nodes/UI/PauseMenu/PauseMenu.tscn" id="9_0380d"]
 [ext_resource type="PackedScene" uid="uid://b0u0c27i7rr37" path="res://nodes/elements/spike/spike.tscn" id="9_xy7i8"]
 [ext_resource type="Script" path="res://nodes/game/KoniecPoziomu.gd" id="10_pl6fu"]
 [ext_resource type="PackedScene" uid="uid://dmitstaux7wpr" path="res://nodes/elements/blendery/blender_tlo1.tscn" id="12_0x60o"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://c604irsu7wcvy" path="res://nodes/elements/blendery/blender_tlo4.tscn" id="15_kfxjc"]
 [ext_resource type="PackedScene" uid="uid://d2cicoihu6hey" path="res://nodes/elements/blendery/blender_tlo5.tscn" id="16_2lo1n"]
 [ext_resource type="PackedScene" uid="uid://lc1072mu6wt5" path="res://nodes/elements/blendery/blender_tlo6.tscn" id="17_mscqq"]
+[ext_resource type="AudioStream" uid="uid://drvqdbart7qsi" path="res://data/audio/next_level_music.mp3" id="19_rbgju"]
+[ext_resource type="AudioStream" uid="uid://dpleqwwyeshqm" path="res://data/audio/in_game_music.mp3" id="20_rnead"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_72ima"]
 texture = ExtResource("3_nqkrc")
@@ -415,7 +417,7 @@ vertical_alignment = 1
 [node name="PauseScreenCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="PauseMenu" parent="PauseScreenCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_mudnx")]
+[node name="PauseMenu" parent="PauseScreenCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_0380d")]
 game_manager = NodePath("../..")
 
 [node name="player" parent="." instance=ExtResource("3_syob8")]
@@ -488,6 +490,14 @@ position = Vector2(1152, 0)
 
 [node name="blender_tlo6" parent="." instance=ExtResource("17_mscqq")]
 position = Vector2(1216, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_rbgju")
+volume_db = -40.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_rnead")
+volume_db = -30.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Area2D/Timer" to="." method="_on_timer_timeout"]

@@ -1,16 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://w5idcibm3f8f"]
+[gd_scene load_steps=20 format=3 uid="uid://w5idcibm3f8f"]
 
-[ext_resource type="Script" path="res://nodes/game/levels/lvn_3.gd" id="1_uaaj7"]
+[ext_resource type="Script" path="res://nodes/game/levels/lvn_3.gd" id="1_s60gl"]
 [ext_resource type="Texture2D" uid="uid://2fdlq500b0t4" path="res://graphics/tilemap_1.png" id="2_ui6p1"]
 [ext_resource type="Texture2D" uid="uid://b1k70w3rr0ln1" path="res://graphics/switch_1.png" id="3_55h6u"]
 [ext_resource type="Texture2D" uid="uid://bd7ms0mj77pq7" path="res://graphics/blender_1.png" id="4_lww4m"]
 [ext_resource type="PackedScene" uid="uid://crsfn8cuddk1j" path="res://nodes/UI/Transitioner/transitioner.tscn" id="5_dwvwq"]
 [ext_resource type="PackedScene" uid="uid://cpcoh4boli6u6" path="res://nodes/UI/Transitioner/transButton.tscn" id="6_c88do"]
-[ext_resource type="PackedScene" uid="uid://dknhxv0icp7v2" path="res://nodes/UI/PauseMenu/pause_menu.tscn" id="7_23yq3"]
+[ext_resource type="PackedScene" uid="uid://bld82n10qhycx" path="res://nodes/UI/PauseMenu/PauseMenu.tscn" id="7_1rh7n"]
 [ext_resource type="PackedScene" uid="uid://5fw75hfjyana" path="res://nodes/game/player/player.tscn" id="8_xpf1n"]
 [ext_resource type="PackedScene" uid="uid://b0u0c27i7rr37" path="res://nodes/elements/spike/spike.tscn" id="9_6fudv"]
 [ext_resource type="Script" path="res://nodes/game/KoniecPoziomu.gd" id="10_4uyj3"]
 [ext_resource type="PackedScene" uid="uid://dxy2mm6bevgso" path="res://nodes/elements/water/Water_Body.tscn" id="11_82g87"]
+[ext_resource type="AudioStream" uid="uid://drvqdbart7qsi" path="res://data/audio/next_level_music.mp3" id="12_8dx0k"]
+[ext_resource type="AudioStream" uid="uid://dpleqwwyeshqm" path="res://data/audio/in_game_music.mp3" id="13_jarqs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ouad7"]
 texture = ExtResource("2_ui6p1")
@@ -299,13 +301,9 @@ font_size = 64
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgdko"]
 size = Vector2(463, 128)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "transitioner", "end_screen", "player")]
+[node name="Game" type="Node2D"]
 process_mode = 1
-script = ExtResource("1_uaaj7")
-transition_button = NodePath("TransitionerCanvasLayer/TransButton")
-transitioner = NodePath("TransitionerCanvasLayer/Transitioner")
-end_screen = NodePath("EndScreenCanvasLayer")
-player = NodePath("Player")
+script = ExtResource("1_s60gl")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_n04ms")
@@ -345,7 +343,7 @@ vertical_alignment = 1
 [node name="PauseScreenCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="PauseMenu" parent="PauseScreenCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("7_23yq3")]
+[node name="MainMenu" parent="PauseScreenCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("7_1rh7n")]
 game_manager = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("8_xpf1n")]
@@ -401,3 +399,11 @@ shape = SubResource("RectangleShape2D_kgdko")
 [node name="Water_Body" parent="." instance=ExtResource("11_82g87")]
 position = Vector2(1472, 16)
 spring_number = 19
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8dx0k")
+volume_db = -40.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_jarqs")
+volume_db = -30.0

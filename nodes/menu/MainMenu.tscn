@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm5sofnxxjsr7"]
+[gd_scene load_steps=7 format=3 uid="uid://cm5sofnxxjsr7"]
 
 [ext_resource type="Script" path="res://nodes/menu/MainMenu.gd" id="1_au46x"]
 [ext_resource type="Texture2D" uid="uid://bebb8wshscuo5" path="res://graphics/menu_background.png" id="2_abx03"]
 [ext_resource type="Texture2D" uid="uid://dmh8rw1xs6suc" path="res://graphics/start_button.png" id="3_45p7x"]
 [ext_resource type="Texture2D" uid="uid://xjptssjugvai" path="res://graphics/exit_button.png" id="4_px14i"]
+[ext_resource type="AudioStream" uid="uid://dqtj1icuwpqjh" path="res://data/audio/title_music.mp3" id="5_mkuau"]
 
 [sub_resource type="SystemFont" id="SystemFont_crg35"]
 font_names = PackedStringArray("Impact")
@@ -91,3 +92,7 @@ theme_override_font_sizes/font_size = 24
 icon = ExtResource("4_px14i")
 flat = true
 icon_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mkuau")
+volume_db = -30.0

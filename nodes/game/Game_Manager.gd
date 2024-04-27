@@ -12,6 +12,7 @@ signal toggle_game_paused(is_paused : bool)
 @export var player_died_end_text : String = "Game Over"
 @onready var player : Player = $player
 @onready var spawn_point : Marker2D = $Spawnpoint
+@onready var audio_player2 : AudioStreamPlayer = $AudioStreamPlayer2
 
 var player_dead : bool = false
 
@@ -29,6 +30,7 @@ func _input(event : InputEvent):
 		game_paused = !game_paused
 
 func _ready():
+	audio_player2.play()
 	player.global_position = spawn_point.global_position
 	self.scale = Vector2(3.0,3.0)
 	transition_button.transition_finished.connect(transition_animation_finished)

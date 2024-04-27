@@ -2,6 +2,7 @@ extends GameManager
 
 @export var next_lvn : PackedScene
 @onready var timer : Timer = $Area2D/Timer
+@onready var audio_stream :  AudioStreamPlayer = $AudioStreamPlayer
 
 func _on_area_2d_body_entered(body):
 	if (body.name == "player"):
