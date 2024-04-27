@@ -1,15 +1,23 @@
 [gd_scene load_steps=6 format=3 uid="uid://cn4xvx1eaogcf"]
 
 [ext_resource type="PackedScene" uid="uid://b0u0c27i7rr37" path="res://nodes/game/lvl_elems/śmierć.tscn" id="1_07mt8"]
-[ext_resource type="Script" path="res://nodes/game/lvl/lvl.gd" id="1_yqf8e"]
 [ext_resource type="PackedScene" uid="uid://ctk6d6jftuli" path="res://nodes/game/enemy/enemy.tscn" id="3_a6dqw"]
 [ext_resource type="PackedScene" uid="uid://bsfige7jkato4" path="res://nodes/game/boss/boss.tscn" id="3_s3we2"]
+
+[sub_resource type="GDScript" id="GDScript_u1orr"]
+script/source = "extends Node2D
+
+@export var boss : CharacterBody2D
+
+func _ready():
+	pass
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8n0r"]
 size = Vector2(1062, 103)
 
 [node name="Lvl" type="Node2D"]
-script = ExtResource("1_yqf8e")
+script = SubResource("GDScript_u1orr")
 
 [node name="TEMP_PODŁOGA" type="StaticBody2D" parent="."]
 scale = Vector2(5, 1)

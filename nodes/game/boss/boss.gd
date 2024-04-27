@@ -7,7 +7,9 @@ const DIRECTION_X : float = -1.0
 @export var animation_player : AnimationPlayer
 @export var move_animation_name : String = "MoveForward"
 @export var fireball : PackedScene
-@export var fireballSpawner : Marker2D
+@export var ttl : Timer
+
+var fireballs : Array = []
 
 func _process(delta):
 	velocity.x = speed * DIRECTION_X
@@ -17,14 +19,20 @@ func _on_move_timer_timeout():
 	speed = 0 if speed == MAX_SPEED else MAX_SPEED
 	
 	if speed == 0:
-		print("fireball tu tutututu")
 		spawn_fireball()
+
+func unload():
+	kill_them_all()
+	queue_free()
 
 func spawn_fireball():
 	var fb = fireball.instantiate()
-	fb.global_position = fireballSpawner.global_position
 	get_parent().add_child(fb)
+	fb.global_position = global_position
+	fireballs.append(fb)
 
 func kill_them_all():
-	# TODO kill all fireballs
-	pass
+	ttl.queue_free()
+	for fb in fireballs:
+		if fb:
+			fb.queue_free()

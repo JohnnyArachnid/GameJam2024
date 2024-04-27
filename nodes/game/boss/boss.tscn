@@ -23,11 +23,10 @@ _data = {
 "MoveForward": SubResource("Animation_a0o86")
 }
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "fireballSpawner")]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_tm3ps")
 animation_player = NodePath("AnimationPlayer")
 fireball = ExtResource("2_tqbec")
-fireballSpawner = NodePath("FireballSpawner")
 
 [node name="MoveTimer" type="Timer" parent="."]
 autostart = true
@@ -54,8 +53,6 @@ shape = SubResource("RectangleShape2D_3fiii")
 libraries = {
 "": SubResource("AnimationLibrary_rckla")
 }
-
-[node name="FireballSpawner" type="Marker2D" parent="."]
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="body_entered" from="KillAura" to="KillAura" method="_on_body_entered"]
