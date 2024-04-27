@@ -17,7 +17,7 @@ height = 22.0
 size = Vector2(43, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1o33"]
-size = Vector2(171, 46)
+size = Vector2(443, 46)
 
 [sub_resource type="Animation" id="Animation_cg20u"]
 resource_name = "Air"
@@ -162,7 +162,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippendo/Detection"]
-position = Vector2(77.5, -12)
+position = Vector2(213.5, -12)
 shape = SubResource("RectangleShape2D_c1o33")
 
 [node name="floorDetector" type="RayCast2D" parent="Flippendo"]

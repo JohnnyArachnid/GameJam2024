@@ -4,8 +4,8 @@ signal die
 
 const WALK_SPEED = 50.0
 const FOLLOW_SPEED = 100.0
-const ATTACK_MIN_DISTANCE = 20
-const FOLLOW_MAX_DISTANCE = 172
+const ATTACK_MIN_DISTANCE = 30
+const FOLLOW_MAX_DISTANCE = 4200
 const FOLLOW_OFFSET = 0
 
 @export var character_state_machine : CSM

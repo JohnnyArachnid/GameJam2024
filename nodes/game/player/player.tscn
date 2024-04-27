@@ -316,7 +316,7 @@ graph_offset = Vector2(-101, 51)
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped", "resurect_state")]
 collision_layer = 2
 script = ExtResource("1_ia0x1")
-SPEED = 800.0
+SPEED = 400.0
 speed_in_water = 250.0
 character_state_machine = NodePath("CharacterStateMachine")
 to_be_flipped = NodePath("Flippendo")
@@ -347,7 +347,7 @@ shape = SubResource("RectangleShape2D_ckrwl")
 texture = ExtResource("3_nvl6n")
 hframes = 5
 vframes = 6
-frame = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

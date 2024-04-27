@@ -33,5 +33,4 @@ func attack():
 func _on_detection_body_entered(body):
 	if body.name == "player":
 		target = body
-		if  body.character_state_machine.current_state.name == "Walk":
-			emit_signal("interrupt_state", self)
+		emit_signal("interrupt_state", self)
