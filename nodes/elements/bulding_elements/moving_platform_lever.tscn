@@ -49,9 +49,7 @@ collision_layer = 15
 collision_mask = 15
 script = ExtResource("1_hur73")
 
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_2kab5")
 texture = ExtResource("2_2kab5")
 region_enabled = true
 region_rect = Rect2(128, 96, 32, 24)

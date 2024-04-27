@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bld82n10qhycx" path="res://nodes/UI/PauseMenu/PauseMenu.tscn" id="7_u4mm8"]
 [ext_resource type="PackedScene" uid="uid://5fw75hfjyana" path="res://nodes/game/player/player.tscn" id="8_xpf1n"]
 [ext_resource type="PackedScene" uid="uid://b0u0c27i7rr37" path="res://nodes/elements/spike/spike.tscn" id="9_6fudv"]
-
-[ext_resource type="Script" path="res://nodes/game/KoniecPoziomu.gd" id="10_4uyj3"]
 [ext_resource type="PackedScene" uid="uid://dxy2mm6bevgso" path="res://nodes/elements/water/Water_Body.tscn" id="11_82g87"]
 [ext_resource type="PackedScene" uid="uid://dmitstaux7wpr" path="res://nodes/elements/blendery/blender_tlo1.tscn" id="12_qxpts"]
 [ext_resource type="PackedScene" uid="uid://dlsbiqj1byvvu" path="res://nodes/elements/blendery/blender_tlo2.tscn" id="13_j4lng"]
@@ -20,9 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://bvv5isyge0rnd" path="res://nodes/elements/bulding_elements/moving_platform_lever.tscn" id="16_36gjn"]
 [ext_resource type="PackedScene" uid="uid://bet3j0aw7xm08" path="res://nodes/elements/bulding_elements/button.tscn" id="17_c7yfd"]
 [ext_resource type="PackedScene" uid="uid://ctk6d6jftuli" path="res://nodes/game/enemy/enemy.tscn" id="18_84wrp"]
-[ext_resource type="PackedScene" uid="uid://c5en4f5aajxoc" path="res://nodes/elements/bulding_elements/switchable platform.tscn" id="19_114ui"]
+[ext_resource type="PackedScene" uid="uid://1p5l2a0gwj0x" path="res://nodes/elements/bulding_elements/switchable platform.tscn" id="19_114ui"]
 [ext_resource type="AudioStream" uid="uid://drvqdbart7qsi" path="res://data/audio/next_level_music.mp3" id="20_uplgw"]
-[ext_resource type="AudioStream" uid="uid://dpleqwwyeshqm" path="res://data/audio/in_game_music.mp3" id="21_m2f22"]
+[ext_resource type="AudioStream" uid="uid://dpleqwwyeshqm" path="res://data/audio/in_game_music.mp3" id="21_b44sv"]
 
 [sub_resource type="GDScript" id="GDScript_r5xrp"]
 script/source = "extends GameManager
@@ -405,9 +403,6 @@ func _on_body_entered(body):
 		body.kill()
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyxyd"]
-size = Vector2(224, 63.75)
-
 [sub_resource type="GDScript" id="GDScript_ds0ml"]
 script/source = "extends Area2D
 
@@ -425,6 +420,9 @@ func _on_body_entered(body):
 	if body.has_method(\"kill\"):
 		body.kill()
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyxyd"]
+size = Vector2(224, 63.75)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "transitioner", "end_screen")]
 process_mode = 1
@@ -580,7 +578,6 @@ scale = Vector2(2, 2)
 collision_layer = 1
 collision_mask = 3
 
-
 [node name="enemy" parent="." instance=ExtResource("18_84wrp")]
 position = Vector2(1069, 13)
 
@@ -597,6 +594,9 @@ position = Vector2(1424, 22)
 stream = ExtResource("20_uplgw")
 volume_db = -40.0
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_b44sv")
+volume_db = -30.0
 
 [connection signal="body_entered" from="KoniecPoziomu" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="KoniecPoziomu/Timer" to="." method="_on_timer_timeout"]
