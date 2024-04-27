@@ -8,8 +8,12 @@ const DIRECTION_X : float = -1.0
 @export var move_animation_name : String = "MoveForward"
 @export var fireball : PackedScene
 @export var ttl : Timer
+@export var weak_point : StaticBody2D
 
 var fireballs : Array = []
+
+func _ready():
+	weak_point.connect("boss_dead", unload)
 
 func _process(delta):
 	velocity.x = speed * DIRECTION_X

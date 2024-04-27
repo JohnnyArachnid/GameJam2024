@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsfige7jkato4"]
+[gd_scene load_steps=11 format=3 uid="uid://bsfige7jkato4"]
 
 [ext_resource type="Script" path="res://nodes/game/boss/KillAura.gd" id="1_28cgk"]
 [ext_resource type="Script" path="res://nodes/game/boss/boss.gd" id="1_tm3ps"]
 [ext_resource type="PackedScene" uid="uid://tky4l2d6vbks" path="res://nodes/game/boss/fireball.tscn" id="2_tqbec"]
+[ext_resource type="Script" path="res://nodes/game/boss/WeakBody.gd" id="4_30pdu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66crv"]
 size = Vector2(40, 40)
@@ -23,10 +24,15 @@ _data = {
 "MoveForward": SubResource("Animation_a0o86")
 }
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("animation_player")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5out0"]
+size = Vector2(18, 40)
+
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "ttl", "weak_point")]
 script = ExtResource("1_tm3ps")
 animation_player = NodePath("AnimationPlayer")
 fireball = ExtResource("2_tqbec")
+ttl = NodePath("MoveTimer")
+weak_point = NodePath("WeakBody")
 
 [node name="MoveTimer" type="Timer" parent="."]
 autostart = true
@@ -53,6 +59,22 @@ shape = SubResource("RectangleShape2D_3fiii")
 libraries = {
 "": SubResource("AnimationLibrary_rckla")
 }
+
+[node name="WeakPoint" type="ColorRect" parent="."]
+offset_left = 11.0
+offset_top = -19.0
+offset_right = 29.0
+offset_bottom = 21.0
+color = Color(0.564706, 0.670588, 0.92549, 1)
+
+[node name="WeakBody" type="StaticBody2D" parent="."]
+collision_layer = 12
+collision_mask = 0
+script = ExtResource("4_30pdu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeakBody"]
+position = Vector2(20, 1)
+shape = SubResource("RectangleShape2D_5out0")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="body_entered" from="KillAura" to="KillAura" method="_on_body_entered"]
