@@ -10,7 +10,8 @@ signal toggle_game_paused(is_paused : bool)
 @export var transitioner : Transitioner
 @export var end_screen : CanvasLayer
 @export var player_died_end_text : String = "Game Over"
-@export var player : Player
+@onready var player : Player = $player
+@onready var spawn_point : Marker2D = $Spawnpoint
 
 var player_dead : bool = false
 
@@ -28,6 +29,7 @@ func _input(event : InputEvent):
 		game_paused = !game_paused
 
 func _ready():
+	player.global_position = spawn_point.global_position
 	self.scale = Vector2(3.0,3.0)
 	transition_button.transition_finished.connect(transition_animation_finished)
 	player.connect("die", player_died)
@@ -37,6 +39,17 @@ func player_died():
 	end_screen.visible = true
 	transitioner.animation_player.play("fade_out")
 	player_dead = true
+	reset_player()
+
+func reset_player():
+	end_screen.visible = false
+	transitioner.animation_player.stop()
+	transitioner.animation_player.play("fade_in")
+	player_dead = false
+	player.global_position = spawn_point.global_position
+	player.resurect_state.res()
+	player.is_dead = false
+	
 
 func transition_animation_finished():
 	lvl_finished.emit()

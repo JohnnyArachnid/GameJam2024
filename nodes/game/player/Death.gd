@@ -17,4 +17,4 @@ func dying():
 	character.velocity = Vector2.ZERO
 
 func dead():
-	get_tree().quit()
+	pass

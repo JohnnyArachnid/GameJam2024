@@ -120,11 +120,11 @@ func splash(index, speed):
 	
 
 func _on_water_body_area_body_entered(body):
-	if (body.name == "Player"):
+	if (body.name == "player"):
 		body.is_in_water = true
 	pass
 
 func _on_water_body_area_body_exited(body):
-	if (body.name == "Player"):
+	if (body.name == "player"):
 		body.is_in_water = false
 	pass

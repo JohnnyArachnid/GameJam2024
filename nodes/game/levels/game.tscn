@@ -365,14 +365,16 @@ font_size = 64
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgdko"]
 size = Vector2(463, 128)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "transitioner", "end_screen", "player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "transitioner", "end_screen")]
 process_mode = 1
 script = ExtResource("1_fiell")
 next_lvn = ExtResource("2_anydo")
 transition_button = NodePath("TransitionerCanvasLayer/TransButton")
 transitioner = NodePath("TransitionerCanvasLayer/Transitioner")
 end_screen = NodePath("EndScreenCanvasLayer")
-player = NodePath("player")
+
+[node name="Spawnpoint" type="Marker2D" parent="."]
+position = Vector2(64, -26)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ddac5")

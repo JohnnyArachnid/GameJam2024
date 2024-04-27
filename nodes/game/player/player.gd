@@ -11,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var character_state_machine : CSM
 @export var to_be_flipped : Node2D
+@export var resurect_state : State
 
 # DEBUG WYJEB KIEDYŚ
 @onready var debug_state_label : Label = $DEBUG_STATE_LABEL
