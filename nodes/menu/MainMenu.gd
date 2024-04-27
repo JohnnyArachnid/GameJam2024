@@ -17,8 +17,8 @@ func _process(delta):
 	pass
 	
 func on_start_pressed() -> void:
-	self.queue_free()
 	play.emit()
+	self.queue_free()
 	pass
 	
 	
