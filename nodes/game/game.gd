@@ -35,8 +35,7 @@ func _ready():
 func player_died():
 	end_screen.find_child("EndText").text = player_died_end_text
 	end_screen.visible = true
-	transition_button._on_toggled(true)
-	transition_button.disabled = true
+	transitioner.animation_player.play("fade_out")
 	player_dead = true
 
 func transition_animation_finished():
