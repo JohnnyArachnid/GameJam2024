@@ -13,6 +13,7 @@ func _ready():
 	pass
 "
 
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8n0r"]
 size = Vector2(1062, 103)
 
