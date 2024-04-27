@@ -19,10 +19,6 @@ func _on_area_2d_body_entered(body):
 		transitioner.animation_player.play("fade_out")
 		timer.start()
 		pass
-		
-func next_level():
-	
-	pass
 
 func _on_timer_timeout():
 	get_tree().change_scene_to_packed(next_lvn)
