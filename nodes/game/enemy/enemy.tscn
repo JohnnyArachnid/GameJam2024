@@ -24,6 +24,33 @@ resource_name = "Air"
 
 [sub_resource type="Animation" id="Animation_ixnka"]
 resource_name = "Attack"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterStateMachine/Attack")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_finished"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flippendo/Weapon:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_x38wa"]
 resource_name = "Death"
@@ -123,6 +150,7 @@ color = Color(1, 0, 0, 1)
 [node name="Weapon" type="Area2D" parent="Flippendo"]
 collision_layer = 0
 collision_mask = 2
+monitoring = false
 script = ExtResource("2_ohuto")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippendo/Weapon"]
@@ -174,17 +202,21 @@ autostart = true
 script = ExtResource("9_78sg5")
 ground_state = NodePath("../Walk")
 
-[node name="Follow" type="Node" parent="CharacterStateMachine"]
+[node name="Follow" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
 script = ExtResource("6_btcq5")
+air_state = NodePath("../Air")
+ground_state = NodePath("../Walk")
+attack_state = NodePath("../Attack")
 
 [node name="Death" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("7_k8gxj")
 can_move = false
 
-[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("follow_state")]
 script = ExtResource("8_n0xue")
-ground_state = NodePath("../Walk")
+follow_state = NodePath("../Follow")
 can_move = false
 
+[connection signal="body_entered" from="Flippendo/Weapon" to="Flippendo/Weapon" method="_on_body_entered"]
 [connection signal="body_entered" from="Flippendo/Detection" to="CharacterStateMachine/Follow" method="_on_detection_body_entered"]
 [connection signal="timeout" from="CharacterStateMachine/Walk/Timer" to="CharacterStateMachine/Walk" method="_on_timer_timeout"]
