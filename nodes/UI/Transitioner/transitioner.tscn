@@ -111,7 +111,7 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(36.1343, 36.1343)
+scale = Vector2(50, 50)
 pivot_offset = Vector2(32, 32)
 texture = SubResource("GradientTexture2D_fr3jd")
 
