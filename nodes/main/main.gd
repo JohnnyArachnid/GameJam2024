@@ -7,11 +7,6 @@ extends Node2D
 func _ready():
 	menu.connect("play",startGame)
 	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 func startGame():
 	get_tree().change_scene_to_packed(game)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://5fw75hfjyana"]
+[gd_scene load_steps=44 format=3 uid="uid://5fw75hfjyana"]
 
 [ext_resource type="Script" path="res://nodes/game/player/player.gd" id="1_ia0x1"]
 [ext_resource type="Script" path="res://nodes/game/player/Weapon.gd" id="2_gqndi"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://nodes/game/player/Death.gd" id="6_hqagg"]
 [ext_resource type="Script" path="res://nodes/game/player/Landing.gd" id="6_knqc8"]
 [ext_resource type="Script" path="res://nodes/game/player/Attack.gd" id="7_o8gfm"]
-[ext_resource type="Script" path="res://nodes/game/player/Idle.gd" id="10_4jhb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46jnb"]
 size = Vector2(32, 32)
@@ -61,7 +60,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_uoaq8"]
 resource_name = "Death"
-length = 5.0
+length = 0.3
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -91,19 +90,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_xqbux"]
 resource_name = "Falling"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flippendo/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [13]
-}
 
 [sub_resource type="Animation" id="Animation_44rng"]
 resource_name = "Hit"
@@ -224,10 +210,10 @@ animation = &"Attack"
 animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1xrs"]
-animation = &"JumpInAir"
+animation = &"Falling"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_swbuy"]
-animation = &"Idle"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iaaad"]
+animation = &"Hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ur8d"]
 animation = &"JumpStart"
@@ -253,6 +239,12 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6vc4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jrce2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_627n1"]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ejjk"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hoq71"]
@@ -265,55 +257,36 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xirtx"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pyjib"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0qel"]
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aujh0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1y71k"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p26w3"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sp1p5"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ckvh8"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ff7dk"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxad0"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jju5"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuv5l"]
 states/Attack/node = SubResource("AnimationNodeAnimation_4gvh3")
-states/Attack/position = Vector2(581, 281)
+states/Attack/position = Vector2(624, 233)
 states/Death/node = SubResource("AnimationNodeAnimation_s40gc")
-states/Death/position = Vector2(760, 159)
+states/Death/position = Vector2(890, 151)
 states/End/position = Vector2(1004, 138)
 states/Falling/node = SubResource("AnimationNodeAnimation_j1xrs")
-states/Falling/position = Vector2(624, 18)
-states/Idle/node = SubResource("AnimationNodeAnimation_swbuy")
-states/Idle/position = Vector2(493, 159)
+states/Falling/position = Vector2(624, 72)
+states/Hit/node = SubResource("AnimationNodeAnimation_iaaad")
+states/Hit/position = Vector2(764, 149)
 states/Jump/node = SubResource("AnimationNodeAnimation_7ur8d")
-states/Jump/position = Vector2(420, -7)
+states/Jump/position = Vector2(456, 62)
 states/Landing/node = SubResource("AnimationNodeAnimation_i8p6h")
-states/Landing/position = Vector2(795, 2)
+states/Landing/position = Vector2(749, 72)
 states/NextJump/node = SubResource("AnimationNodeAnimation_ryvpb")
-states/NextJump/position = Vector2(624, -75)
+states/NextJump/position = Vector2(603, 7)
 states/Start/position = Vector2(365, 154)
 states/Walk/node = SubResource("AnimationNodeAnimation_synte")
 states/Walk/position = Vector2(624, 154)
-transitions = ["Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_pyjib"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_aujh0"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1y71k"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_p26w3"), "Idle", "Falling", SubResource("AnimationNodeStateMachineTransition_sp1p5"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_ckvh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ff7dk"), "Landing", "Idle", SubResource("AnimationNodeStateMachineTransition_qxad0"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_1jju5")]
-graph_offset = Vector2(-73, -129)
+transitions = ["Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_s6vc4"), "Hit", "Walk", SubResource("AnimationNodeStateMachineTransition_jrce2"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_627n1"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx"), "Start", "Walk", SubResource("AnimationNodeStateMachineTransition_m0qel")]
+graph_offset = Vector2(-14, 6)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped")]
 collision_layer = 2
 script = ExtResource("1_ia0x1")
 SPEED = 800.0
+JUMP_VELOCITY = -1200.0
 speed_in_water = 250.0
 character_state_machine = NodePath("CharacterStateMachine")
 to_be_flipped = NodePath("Flippendo")
@@ -343,12 +316,13 @@ shape = SubResource("RectangleShape2D_ckrwl")
 texture = ExtResource("3_nvl6n")
 hframes = 5
 vframes = 6
-frame = 13
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_d25b8")
 }
+autoplay = "Idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
@@ -361,13 +335,12 @@ anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("3_sbg0g")
 character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
-current_state = NodePath("Idle")
+current_state = NodePath("Walk")
 
-[node name="Walk" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "idle_state")]
+[node name="Walk" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state")]
 script = ExtResource("4_bikfr")
 air_state = NodePath("../Air")
 attack_state = NodePath("../Attack")
-idle_state = NodePath("../Idle")
 
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("landing_state")]
 script = ExtResource("5_jrp4a")
@@ -387,11 +360,5 @@ can_move = false
 script = ExtResource("7_o8gfm")
 ground_state = NodePath("../Walk")
 can_move = false
-
-[node name="Idle" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("walk_State", "air_state", "attack_state")]
-script = ExtResource("10_4jhb6")
-walk_State = NodePath("../Walk")
-air_state = NodePath("../Air")
-attack_state = NodePath("../Attack")
 
 [connection signal="body_entered" from="Flippendo/Weapon" to="Flippendo/Weapon" method="_on_body_entered"]

@@ -4,8 +4,7 @@ class_name Player
 
 signal die
 
-@export var SPEED = 300.0
-@export var JUMP_VELOCITY = -400.0
+@export var SPEED = 10.0
 @export var speed_in_water : float = 150.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -15,6 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # DEBUG WYJEB KIEDYŚ
 @onready var debug_state_label : Label = $DEBUG_STATE_LABEL
+
+@onready var animation_tree : AnimationTree = $AnimationTree
 
 var is_dead : bool = false
 var is_in_water : bool = false
@@ -48,4 +49,3 @@ func kill():
 func _input(event : InputEvent):
 	if (event.is_action_pressed("move_down") && is_on_floor()):
 		position.y += 1
-
