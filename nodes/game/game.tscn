@@ -311,7 +311,6 @@ layer_0/tile_data = PackedInt32Array(196609, 262144, 1, 131073, 262144, 1, 65537
 [node name="TransitionerCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Transitioner" parent="TransitionerCanvasLayer" instance=ExtResource("13_5of7b")]
-visible = false
 
 [node name="TransButton" parent="TransitionerCanvasLayer" node_paths=PackedStringArray("transitioner") instance=ExtResource("12_u58jv")]
 visible = false
