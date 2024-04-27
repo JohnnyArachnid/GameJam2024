@@ -28,6 +28,7 @@ func _input(event : InputEvent):
 		game_paused = !game_paused
 
 func _ready():
+	self.scale = Vector2(3.0,3.0)
 	transition_button.transition_finished.connect(transition_animation_finished)
 	player.connect("die", player_died)
 
