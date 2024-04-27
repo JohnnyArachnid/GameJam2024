@@ -16,9 +16,15 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 		show()
 	else:
 		hide()
-
-func _on_button_pressed():
-	game_manager.game_paused = false
 	
 func _on_button_2_pressed():
 	get_tree().quit()
+
+
+func _on_start_button_pressed():
+	game_manager.game_paused = false
+	pass
+	
+func _on_exit_button_pressed():
+	get_tree().quit()
+	pass
