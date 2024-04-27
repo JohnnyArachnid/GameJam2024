@@ -1,8 +1,4 @@
-
 [gd_scene load_steps=27 format=3 uid="uid://beykmc3nnpy71"]
-
-[ext_resource type="Script" path="res://nodes/game/levels/lvn_2.gd" id="1_uaaj7"]
-[ext_resource type="Texture2D" uid="uid://c56kjs45pjhq0" path="res://graphics/togra.png" id="2_b3s42"]
 
 [ext_resource type="Texture2D" uid="uid://2fdlq500b0t4" path="res://graphics/tilemap_1.png" id="2_ui6p1"]
 [ext_resource type="Texture2D" uid="uid://b1k70w3rr0ln1" path="res://graphics/switch_1.png" id="3_55h6u"]
@@ -420,24 +416,12 @@ func _on_body_entered(body):
 		body.kill()
 "
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("transition_button", "transitioner", "end_screen")]
+[node name="Game2" type="Node2D" node_paths=PackedStringArray("transition_button", "transitioner", "end_screen")]
 process_mode = 1
 script = SubResource("GDScript_r5xrp")
 transition_button = NodePath("TransitionerCanvasLayer/TransButton")
 transitioner = NodePath("TransitionerCanvasLayer/Transitioner")
 end_screen = NodePath("EndScreenCanvasLayer")
-
-player = NodePath("player")
-
-
-[node name="Togra" type="Sprite2D" parent="."]
-position = Vector2(2886, -127)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_b3s42")
-
-[node name="Spawnpoint" type="Marker2D" parent="."]
-position = Vector2(64, -26)
-
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ddac5")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://5fw75hfjyana"]
+[gd_scene load_steps=50 format=3 uid="uid://5fw75hfjyana"]
 
 [ext_resource type="Script" path="res://nodes/game/player/player.gd" id="1_ia0x1"]
 [ext_resource type="Script" path="res://nodes/game/player/Weapon.gd" id="2_gqndi"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://nodes/game/player/Landing.gd" id="6_knqc8"]
 [ext_resource type="Script" path="res://nodes/game/player/Attack.gd" id="7_o8gfm"]
 [ext_resource type="Script" path="res://nodes/game/player/Idle.gd" id="10_4jhb6"]
-[ext_resource type="Script" path="res://nodes/game/player/Resurect.gd" id="11_dr7lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46jnb"]
 size = Vector2(32, 32)
@@ -289,8 +288,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jju5"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pkt0f"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuv5l"]
 states/Attack/node = SubResource("AnimationNodeAnimation_4gvh3")
 states/Attack/position = Vector2(581, 281)
@@ -310,17 +307,16 @@ states/NextJump/position = Vector2(624, -75)
 states/Start/position = Vector2(365, 154)
 states/Walk/node = SubResource("AnimationNodeAnimation_synte")
 states/Walk/position = Vector2(624, 154)
-transitions = ["Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_pyjib"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_aujh0"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1y71k"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_p26w3"), "Idle", "Falling", SubResource("AnimationNodeStateMachineTransition_sp1p5"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_ckvh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ff7dk"), "Landing", "Idle", SubResource("AnimationNodeStateMachineTransition_qxad0"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_1jju5"), "Death", "Walk", SubResource("AnimationNodeStateMachineTransition_pkt0f")]
-graph_offset = Vector2(-101, 51)
+transitions = ["Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_pyjib"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_aujh0"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1y71k"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_p26w3"), "Idle", "Falling", SubResource("AnimationNodeStateMachineTransition_sp1p5"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_ckvh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ff7dk"), "Landing", "Idle", SubResource("AnimationNodeStateMachineTransition_qxad0"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_1jju5")]
+graph_offset = Vector2(-73, -129)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped", "resurect_state")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped")]
 collision_layer = 2
 script = ExtResource("1_ia0x1")
 SPEED = 800.0
 speed_in_water = 250.0
 character_state_machine = NodePath("CharacterStateMachine")
 to_be_flipped = NodePath("Flippendo")
-resurect_state = NodePath("CharacterStateMachine/Resurect")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_46jnb")
@@ -397,9 +393,5 @@ script = ExtResource("10_4jhb6")
 walk_State = NodePath("../Walk")
 air_state = NodePath("../Air")
 attack_state = NodePath("../Attack")
-
-[node name="Resurect" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("alive_state")]
-script = ExtResource("11_dr7lf")
-alive_state = NodePath("../Idle")
 
 [connection signal="body_entered" from="Flippendo/Weapon" to="Flippendo/Weapon" method="_on_body_entered"]
