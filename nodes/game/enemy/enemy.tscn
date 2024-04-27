@@ -198,7 +198,7 @@ shape = SubResource("CapsuleShape2D_77bk4")
 texture = ExtResource("2_0jyah")
 hframes = 3
 vframes = 3
-frame = 2
+frame = 3
 
 [node name="Weapon" type="Area2D" parent="Flippendo"]
 collision_layer = 0

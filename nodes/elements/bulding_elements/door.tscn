@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://vom0xmrggqmq"]
 
-[ext_resource type="Script" path="res://nodes/elements/bulding_elements/door.gd" id="1_jrp7t"]
-[ext_resource type="Texture2D" uid="uid://43ppbg5vperp" path="res://nodes/elements/bulding_elements/temp_2.png" id="2_mctgk"]
+[ext_resource type="Script" path="res://Game/Environment/bulding_elements/door.gd" id="1_jrp7t"]
+[ext_resource type="Texture2D" uid="uid://bjtwof1j3bchn" path="res://graphics/Assets/Assets.png" id="2_mctgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgt6c"]
-size = Vector2(31.9333, 31.9834)
+size = Vector2(31.9333, 32.3333)
 
 [node name="door" type="Node2D"]
-position = Vector2(-1, 7)
 scale = Vector2(5, 20)
 script = ExtResource("1_jrp7t")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -21,6 +21,5 @@ region_rect = Rect2(144, 272, 32, 32)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.366667, -16.3417)
-scale = Vector2(1, 1)
+position = Vector2(0.366667, -16.1667)
 shape = SubResource("RectangleShape2D_rgt6c")

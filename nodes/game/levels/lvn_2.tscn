@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://beykmc3nnpy71"]
+[gd_scene load_steps=31 format=3 uid="uid://beykmc3nnpy71"]
 
 [ext_resource type="Texture2D" uid="uid://c56kjs45pjhq0" path="res://graphics/togra.png" id="2_b3s42"]
 [ext_resource type="Texture2D" uid="uid://2fdlq500b0t4" path="res://graphics/tilemap_1.png" id="2_ui6p1"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://bvv5isyge0rnd" path="res://nodes/elements/bulding_elements/moving_platform_lever.tscn" id="16_36gjn"]
 [ext_resource type="PackedScene" uid="uid://bet3j0aw7xm08" path="res://nodes/elements/bulding_elements/button.tscn" id="17_c7yfd"]
 [ext_resource type="PackedScene" uid="uid://ctk6d6jftuli" path="res://nodes/game/enemy/enemy.tscn" id="18_84wrp"]
-[ext_resource type="PackedScene" uid="uid://1p5l2a0gwj0x" path="res://nodes/elements/bulding_elements/switchable platform.tscn" id="19_114ui"]
 [ext_resource type="AudioStream" uid="uid://drvqdbart7qsi" path="res://data/audio/next_level_music.mp3" id="20_uplgw"]
 [ext_resource type="AudioStream" uid="uid://dpleqwwyeshqm" path="res://data/audio/in_game_music.mp3" id="21_b44sv"]
 
@@ -432,7 +431,7 @@ transitioner = NodePath("TransitionerCanvasLayer/Transitioner")
 end_screen = NodePath("EndScreenCanvasLayer")
 
 [node name="Togra" type="Sprite2D" parent="."]
-position = Vector2(2886, -127)
+position = Vector2(2800, -217)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_b3s42")
 
@@ -553,7 +552,10 @@ collision_mask = 3
 script = SubResource("GDScript_6acmi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(221.5, 54)
+shape = SubResource("RectangleShape2D_kgdko")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1103, 122)
 shape = SubResource("RectangleShape2D_kgdko")
 
 [node name="Area2D2" type="Area2D" parent="."]
@@ -568,15 +570,9 @@ script = SubResource("GDScript_ds0ml")
 shape = SubResource("RectangleShape2D_pyxyd")
 
 [node name="button" parent="." node_paths=PackedStringArray("interactive") instance=ExtResource("17_c7yfd")]
-position = Vector2(2384, -200)
+position = Vector2(1801, 18)
 scale = Vector2(1, 1)
 interactive = NodePath("../moving_platform_lever")
-
-[node name="moving_platform_lever" parent="." instance=ExtResource("16_36gjn")]
-position = Vector2(2591, -176)
-scale = Vector2(2, 2)
-collision_layer = 1
-collision_mask = 3
 
 [node name="enemy" parent="." instance=ExtResource("18_84wrp")]
 position = Vector2(1069, 13)
@@ -587,9 +583,6 @@ position = Vector2(1131, 12)
 [node name="enemy3" parent="." instance=ExtResource("18_84wrp")]
 position = Vector2(1196, 13)
 
-[node name="SwitchablePlatform" parent="." instance=ExtResource("19_114ui")]
-position = Vector2(1424, 22)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_uplgw")
 volume_db = -40.0
@@ -597,6 +590,10 @@ volume_db = -40.0
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_b44sv")
 volume_db = -30.0
+
+[node name="moving_platform_lever" parent="." instance=ExtResource("16_36gjn")]
+position = Vector2(1410, 32)
+scale = Vector2(2, 2)
 
 [connection signal="body_entered" from="KoniecPoziomu" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="KoniecPoziomu/Timer" to="." method="_on_timer_timeout"]
