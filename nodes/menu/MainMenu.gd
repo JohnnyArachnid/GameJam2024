@@ -1,8 +1,7 @@
 extends Control
 
-@onready var start_button : Button = $MarginContainer/HBoxContainer/VBoxContainer/StartButton
-@onready var exit_button : Button = $MarginContainer/HBoxContainer/VBoxContainer/ExitButton
-#@onready var timer : Timer = $Timer
+@onready var start_button : Button = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/StartButton
+@onready var exit_button : Button = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ExitButton
 
 signal play
 
