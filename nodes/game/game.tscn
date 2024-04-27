@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://v4xpc5ba5wck"]
+[gd_scene load_steps=17 format=3 uid="uid://v4xpc5ba5wck"]
 
 [ext_resource type="Script" path="res://nodes/game/game.gd" id="1_fiell"]
 [ext_resource type="Texture2D" uid="uid://b1k70w3rr0ln1" path="res://graphics/switch_1.png" id="3_58itd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dknhxv0icp7v2" path="res://nodes/UI/PauseMenu/pause_menu.tscn" id="4_mudnx"]
 [ext_resource type="Texture2D" uid="uid://dkmfc8xqsde4a" path="res://graphics/tilemap_1.png" id="6_6i8xd"]
 [ext_resource type="PackedScene" uid="uid://b0u0c27i7rr37" path="res://nodes/elements/spike/spike.tscn" id="9_xy7i8"]
+[ext_resource type="Script" path="res://nodes/game/KoniecPoziomu.gd" id="10_pl6fu"]
 [ext_resource type="PackedScene" uid="uid://cpcoh4boli6u6" path="res://nodes/UI/Transitioner/transButton.tscn" id="12_u58jv"]
 [ext_resource type="PackedScene" uid="uid://crsfn8cuddk1j" path="res://nodes/UI/Transitioner/transitioner.tscn" id="13_5of7b"]
 
@@ -741,8 +742,11 @@ region_rect = Rect2(32, 0, 32, 32)
 position = Vector2(2410, 10)
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("10_pl6fu")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(221.5, 54)
 shape = SubResource("RectangleShape2D_kgdko")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

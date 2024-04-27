@@ -40,3 +40,7 @@ func player_died():
 
 func transition_animation_finished():
 	lvl_finished.emit()
+
+
+#func _on_area_2d_body_entered(body):
+	#
