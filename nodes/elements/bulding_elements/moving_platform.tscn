@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://db6g0h0a4bxo3"]
 
-[ext_resource type="Texture2D" uid="uid://cw8ilvippy05l" path="res://nodes/elements/bulding_elements/temp_4.png" id="1_rvnu6"]
+[ext_resource type="Texture2D" uid="uid://bjtwof1j3bchn" path="res://graphics/Assets/Assets.png" id="1_rvnu6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_io5os"]
-size = Vector2(64, 16)
+size = Vector2(64, 12)
 
 [sub_resource type="Animation" id="Animation_0f3up"]
 length = 0.001
@@ -54,6 +54,7 @@ region_enabled = true
 region_rect = Rect2(336, 384, 64.3542, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_io5os")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="platform"]
