@@ -13,10 +13,8 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if (body.name == "player"):
-		if (interactive.is_active == true):
-			interactive.is_active = false
-			interactive.get_node("Sprite2D").visible = false
-			interactive.get_node("StaticBody2D").set_collision_layer_value(1, false)
-		else:
-			pass
+		if (interactive.is_active == false):
+			interactive.is_active = true
+			interactive.find_child("AnimationPlayer").play("default")
+	pass
 		
