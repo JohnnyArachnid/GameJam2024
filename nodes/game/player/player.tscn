@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://5fw75hfjyana"]
+[gd_scene load_steps=43 format=3 uid="uid://5fw75hfjyana"]
 
 [ext_resource type="Script" path="res://nodes/game/player/player.gd" id="1_ia0x1"]
 [ext_resource type="Script" path="res://nodes/game/player/Weapon.gd" id="2_gqndi"]
@@ -48,7 +48,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_uoaq8"]
 resource_name = "Death"
-length = 0.4
+length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,7 +56,7 @@ tracks/0/path = NodePath("CharacterStateMachine/Death")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -134,6 +134,9 @@ animation = &"Death"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1xrs"]
 animation = &"Falling"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iaaad"]
+animation = &"Hit"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ur8d"]
 animation = &"JumpStart"
 
@@ -161,6 +164,12 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6vc4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jrce2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_627n1"]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ejjk"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hoq71"]
@@ -173,16 +182,16 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xirtx"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nhpsk"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuv5l"]
 states/Attack/node = SubResource("AnimationNodeAnimation_4gvh3")
 states/Attack/position = Vector2(624, 233)
 states/Death/node = SubResource("AnimationNodeAnimation_s40gc")
-states/Death/position = Vector2(794, 154)
+states/Death/position = Vector2(890, 151)
 states/End/position = Vector2(1004, 138)
 states/Falling/node = SubResource("AnimationNodeAnimation_j1xrs")
 states/Falling/position = Vector2(624, 72)
+states/Hit/node = SubResource("AnimationNodeAnimation_iaaad")
+states/Hit/position = Vector2(764, 149)
 states/Jump/node = SubResource("AnimationNodeAnimation_7ur8d")
 states/Jump/position = Vector2(456, 62)
 states/Landing/node = SubResource("AnimationNodeAnimation_i8p6h")
@@ -192,10 +201,10 @@ states/NextJump/position = Vector2(603, 7)
 states/Start/position = Vector2(230, 138)
 states/Walk/node = SubResource("AnimationNodeAnimation_synte")
 states/Walk/position = Vector2(624, 154)
-transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_440c5"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_nhpsk")]
-graph_offset = Vector2(-57, 0)
+transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_440c5"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_uw5oj"), "Landing", "Walk", SubResource("AnimationNodeStateMachineTransition_tu2xh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_qtm3g"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jj8k6"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_s6vc4"), "Hit", "Walk", SubResource("AnimationNodeStateMachineTransition_jrce2"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_627n1"), "Walk", "Falling", SubResource("AnimationNodeStateMachineTransition_6ejjk"), "Jump", "Falling", SubResource("AnimationNodeStateMachineTransition_hoq71"), "NextJump", "Falling", SubResource("AnimationNodeStateMachineTransition_d2kv5"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_cg41t"), "Falling", "NextJump", SubResource("AnimationNodeStateMachineTransition_xirtx")]
+graph_offset = Vector2(-58, 63)
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("character_state_machine", "to_be_flipped")]
 collision_layer = 2
 script = ExtResource("1_ia0x1")
 character_state_machine = NodePath("CharacterStateMachine")
