@@ -62,7 +62,6 @@ region_rect = Rect2(40, 104, 80, 16)
 light_mask = 3
 visibility_layer = 3
 position = Vector2(0.800001, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_io5os")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="platform"]
